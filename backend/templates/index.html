@@ -99,6 +99,18 @@ let constraintObj = {
                 chunks = [];
                 let videoURL = window.URL.createObjectURL(blob);
                 vidSave.src = videoURL;
+
+                $.ajax ({
+                url: "/",
+                type: "POST",
+                data: blob,
+                contentType: "video/mp4",
+                processData: false,
+                success: function(resp){
+                    console.log(resp);
+                }
+                });
+
             }
         })
         .catch(function(err) { 
