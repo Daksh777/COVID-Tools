@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 import sys
-camera = cv2.VideoCapture(0)
 
 # Webcam Parameters
 webcam = None
@@ -80,7 +79,7 @@ def gen_frames2():
 
     i = 0
     while True:
-        success, frame = camera.read()  # read the camera frame
+        success, frame = webcam.read()  # read the camera frame
         if not success:
             break
         else:

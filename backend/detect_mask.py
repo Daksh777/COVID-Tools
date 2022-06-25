@@ -89,7 +89,7 @@ def gen_frames1():
 
                 # display the label and bounding box rectangle on the output
                 cv2.putText(frame, label, (startX, startY - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                            cv2.FONT_HERSHEY_SIMPLEX, 1.2, color, 2)
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 5)
 
             # ---------------------> removed as used for non - web deetction
