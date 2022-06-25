@@ -8,14 +8,15 @@ import imutils
 import time
 import cv2
 import os
+from config import prototxtPath,weightsPath,model_path
 
 # load our serialized face detector model from disk
-prototxtPath = r"deploy.protext"
-weightsPath = r"res10_300x300_ssd_iter_140000.caffemodel"
+
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+camera = cv2.VideoCapture(0)
 
 # load the face mask detector model from disk
-maskNet = load_model("/Users/cosmos/Documents/hacking-heist/backend/models/mask_detector.model")
+maskNet = load_model(model_path)
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
@@ -59,43 +60,55 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
     return (locs, preds)
 
 
-def start_mask_model():
-    # loop over the frames from the video stream
+def gen_frames1():  
     while True:
-        frame = vs.read()
-        frame = imutils.resize(frame, width=400)
-
-        (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
-
-        for (box, pred) in zip(locs, preds):
-            # unpack the bounding box and predictions
-            (startX, startY, endX, endY) = box
-            (mask, withoutMask) = pred
-
-            # draw bounding box and text
-            label = "Mask" if mask > withoutMask else "No Mask"
-            color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
-
-            # include the probability in the label
-            label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
-
-            # display the label and bounding box rectangle on the output
-            cv2.putText(frame, label, (startX, startY - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-            cv2.rectangle(frame, (startX, startY), (endX, endY), color, 5)
-
-        cv2.imshow("Frame", frame)
-        key = cv2.waitKey(1) & 0xFF
-
-        # if the `q` key was pressed, break from the loop
-        if key == ord("q"):
+        success, frame = camera.read()  # read the camera frame
+        if not success:
             break
+        else:
+            # ---------------------> removed as used for non - web deetction
+            #frame = camera.read()
+            #frame = np.array(frame)
+            # ---------------------> removed as used for non - web deetction
+            frame = imutils.resize(frame, width=400)
 
-    # do a bit of cleanup
-    cv2.destroyAllWindows()
-    vs.stop()
-    
+            (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
+
+            for (box, pred) in zip(locs, preds):
+                # unpack the bounding box and predictions
+                (startX, startY, endX, endY) = box
+                (mask, withoutMask) = pred
+
+                # draw bounding box and text
+                label = "Mask" if mask > withoutMask else "No Mask"
+                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+
+                # include the probability in the label
+                label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+                print(label)
+
+                # display the label and bounding box rectangle on the output
+                cv2.putText(frame, label, (startX, startY - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                cv2.rectangle(frame, (startX, startY), (endX, endY), color, 5)
+
+            # ---------------------> removed as used for non - web deetction
+            # cv2.imshow("Frame", frame)
+            # key = cv2.waitKey(1) & 0xFF
+
+            # # if the `q` key was pressed, break from the loop
+            # if key == ord("q"):
+            #     break
+            # ---------------------> removed as used for non - web deetction
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+# ---------------------> removed as used for non - web deetction
+
 # initialize the video stream
-print("Starting the CAMERA...")
-vs = VideoStream(src=0).start()
-#start_mask_model()
+# print("Starting the CAMERA...")
+# vs = VideoStream(src=0).start()
+
+# ---------------------> removed as used for non - web deetction

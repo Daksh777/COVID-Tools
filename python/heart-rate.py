@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import sys
 
+
 # Helper Methods
 def buildGauss(frame, levels):
     pyramid = [frame]
@@ -22,6 +23,8 @@ if len(sys.argv) == 2:
     webcam = cv2.VideoCapture(sys.argv[1])
 else:
     webcam = cv2.VideoCapture(1)
+    
+    
 realWidth = 320
 realHeight = 240
 videoWidth = 160
@@ -131,6 +134,7 @@ while (True):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print(bpmBuffer.mean())
             break
+
 
 webcam.release()
 cv2.destroyAllWindows()
