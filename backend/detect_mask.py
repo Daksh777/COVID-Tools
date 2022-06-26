@@ -1,19 +1,16 @@
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from os.path import dirname, join
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
 from imutils.video import VideoStream
 import numpy as np
 import imutils
-import time
 import cv2
-import os
 from config import prototxtPath,weightsPath,model_path
 
 # load our serialized face detector model from disk
 
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(1)
 
 # load the face mask detector model from disk
 maskNet = load_model(model_path)
