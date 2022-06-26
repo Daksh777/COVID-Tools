@@ -7,3 +7,10 @@
 ## How to run?
 1. Run `pip install backend/requirements.txt`
 2. Run `backend/app.py`
+
+## Made with:
+1. OpenCV
+2. Tensorflow
+3. Flask
+4. Keras
+5. Scipy
