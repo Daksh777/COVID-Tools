@@ -18,7 +18,7 @@ def index():
 def index1():
     return render_template('mask.html')
 
-@app.route('/heart_rate',methods=['GET','POST'])
+@app.route('/heart',methods=['GET','POST'])
 def index2():
     return render_template('heart.html')
 

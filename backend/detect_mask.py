@@ -10,7 +10,7 @@ from config import prototxtPath,weightsPath,model_path
 # load our serialized face detector model from disk
 
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 
 # load the face mask detector model from disk
 maskNet = load_model(model_path)
