@@ -15,3 +15,5 @@
 3. Flask
 4. Keras
 5. Scipy
+6. JavaScript
+7. HTML+CSS
