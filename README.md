@@ -3,6 +3,7 @@
 ## Features:
 1. Heart rate detection
 2. Mask detection
+3. Convenient and easy-to-use website
 
 ## How to run?
 1. Run `pip install backend/requirements.txt`
