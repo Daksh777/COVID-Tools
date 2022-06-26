@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Heartrate</title>
     <link rel="stylesheet" href="static/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-    <h1 id="heading">MASK DETECTION</h1>
+    <header class="header">
+        <div class="container header__container">
+      <div class="header__logo"><img class="header__img" src="https://image.ibb.co/kcVou6/path3000.png"> <h1 class="header__title">COVID<span class="header__light">Tools</span></h1></div> 
+        
+        <div class="header__menu">
+          <nav id="navbar" class="header__nav collapse">
+            <ul class="header__elenco">
+            <li class="header__el"><a href="/" class="header__link">Home</a></li>
+              <li class="header__el"><a href="heart" class="header__link">Heart Rate Detector</a></li>
+            </ul>
+          </nav>
+        </div>
+          </div>
+      </header>
+    <h1 style="text-align: center" id="heading">MASK DETECTION</h1>
     <img src="{{ url_for('video_feed1') }}" width="100%">
     <!-- <div id="camera">
         <video controls></video>
@@ -119,5 +132,8 @@ let constraintObj = {
         });
 
  </script>
+ <footer>
+    <p>Source code on <a style="color: #63b2fc" href="https://github.com/Daksh777/hacking-heist">GitHub</a></p>
+</footer>
   </body>
 </html>
