@@ -21,8 +21,16 @@
         </div>
           </div>
       </header>
-    <h1 style="text-align: center" id="heading">HEART RATE MONITORING SYSTEM</h1>
-    <img src="{{ url_for('video_feed2') }}" width="100%">
+      <h1 style="text-align: center" id="heading">HEART RATE MONITORING SYSTEM</h1>
+      <h1 style="padding-left: 15px">Note:</h1>
+<ul>
+<li>Application can only detect HR for 1 people at a time</li>
+<li>Sudden change can cause incorrect HR calculation. In the most case, HR can be correctly detected after 10 seconds being stable infront of the camera</li>
+</ul>
+<h2 style="text-align: center;">Please keep your forehead in the green square</h2>
+    <div style="background-size: cover;display: flex;align-items: center;justify-content: center;">
+    <img src="{{ url_for('video_feed2') }}">
+</div>
     <!-- <div id="camera">
         <video controls></video>
         
@@ -132,8 +140,16 @@ let constraintObj = {
         });
 
  </script>
-       <footer>
-        <p>Source code on <a style="color: #63b2fc" href="https://github.com/Daksh777/hacking-heist">GitHub</a></p>
+ <h2 style="padding-left: 15px;">How does this work?</h2>
+ <ul>
+    <li>Data is collected from the forehead over time to estimate the user's heart rate. This is done by measuring average optical intensity in the forehead location in the subimage's green channel alone (a better color mixing ratio may exist, but the blue channel tends to be very noisy) because the forehead and the cheeks have the maximum amount of veins. 
+        <li>Physiological data can be estimated this way thanks to the optical absorption characteristics of (oxy-) haemoglobin (see <a style="text-decoration: underline;" href="http://www.opticsinfobase.org/oe/abstract.cfm?uri=oe-16-26-21434">this paper</a>).</li>
+
+        <li>With good lighting and minimal noise due to motion, a stable heartbeat should be isolated in about 15 seconds.</li>
+ </ul>
+
+       <footer style="position: relative;">
+        <p>Source code on <a style="color: #63b2fc;" href="https://github.com/Daksh777/hacking-heist">GitHub</a></p>
     </footer>
   </body>
 </html>
