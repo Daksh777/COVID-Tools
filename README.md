@@ -6,7 +6,7 @@
 3. Convenient and easy-to-use website
 
 ## How to run?
-1. Run `pip install backend/requirements.txt`
+1. Run `pip install -r requirements.txt`
 2. Run `backend/app.py`
 
 ## Made with:
